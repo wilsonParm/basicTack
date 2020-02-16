@@ -4,8 +4,12 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+<!--  ↓自定义的颜色  -->
     <color name="blackGray">#404040</color>
 
+
+<!--  ↓某处用到的颜色  -->
+    <color name="homeToolBarTitileColor">#000000</color>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.basictack;
+package com.example.basictack.usualFun;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class setStatusBar {
-    static void setColor(Activity activity) {
+    public static void setColor(Activity activity) {
         Window window = activity.getWindow();
         //取消状态栏透明
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -18,7 +18,8 @@ public class setStatusBar {
         //设置状态栏颜色
         window.setStatusBarColor(Color.TRANSPARENT);
         //设置系统状态栏处于可见状态
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+        int option = View.SYSTEM_UI_FLAG_VISIBLE | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        window.getDecorView().setSystemUiVisibility(option);
         //让view不根据系统窗口来调整自己的布局
         ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);

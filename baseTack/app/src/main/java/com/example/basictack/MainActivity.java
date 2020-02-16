@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.basictack.usualFun.setStatusBar;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

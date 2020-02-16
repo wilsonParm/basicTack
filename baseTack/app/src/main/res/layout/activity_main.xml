@@ -23,9 +23,10 @@
             android:layout_height="?actionBarSize"
             android:background="?attr/colorPrimary"
             app:subtitleTextColor="@android:color/darker_gray"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="样式2"
-            app:titleTextColor="@android:color/darker_gray">
+            app:theme="@style/ToolbarCustomStyle"
+            app:title="Home"
+            app:titleTextColor="@color/homeToolBarTitileColor"
+            android:textAllCaps="false">
         </android.support.v7.widget.Toolbar>
 
         <!--主页内容-->
@@ -37,11 +38,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Hello World!"
+                android:text="Home"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAllCaps="false"/>
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
