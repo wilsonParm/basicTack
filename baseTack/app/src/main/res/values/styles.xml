@@ -11,8 +11,11 @@
 
 
     <style name="AppTheme.NoActionBar">
+<!--去掉activityBar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+
 
 </resources>

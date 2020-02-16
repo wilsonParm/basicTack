@@ -23,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="?attr/colorPrimary"
-            app:subtitleTextColor="@android:color/white"
+            app:subtitleTextColor="@android:color/darker_gray"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="样式2"
-            app:titleTextColor="@android:color/white">
+            app:titleTextColor="@android:color/darker_gray">
         </android.support.v7.widget.Toolbar>
 
         <!--主页内容-->
@@ -56,7 +56,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigationview_header"
         app:insetForeground="@android:color/transparent"
-        app:menu="@menu/menu_navigation">
+        app:menu="@layout/menu_navigation">
 
         <!--添加脚布局-->
         <LinearLayout
