@@ -3,7 +3,6 @@ package com.example.basictack;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
                 this, drawer, toolbar, 0, 0);
         drawer.setDrawerListener(toggle);//初始化状态
         toggle.syncState();
+
+        setStatusBar.setColor(MainActivity.this);
 
         /*---------------------------添加头布局和尾布局-----------------------------*/
         //获取xml头布局view
@@ -81,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         /*---------------------------自定义侧边栏布局-----------------------------*/
 //        getSupportFragmentManager().beginTransaction().replace(R.id.navigation_view,
 //                new NavigationViewFragment()).commit();
-    }
 
+
+    }
 
 }
