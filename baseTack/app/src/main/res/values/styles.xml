@@ -16,6 +16,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.WelcomeViewStyle">
+<!--    启动页style，图片也在这，去掉状态栏和标题栏    -->
+        <item name="android:windowBackground">@drawable/welcome</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="ToolbarCustomStyle" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">@color/blackGray</item>
     </style>
