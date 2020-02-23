@@ -26,7 +26,7 @@ public class welcome_act extends AppCompatActivity {
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
 
-        handler.sendEmptyMessageDelayed(0,3000);  //定个时 3秒
+        handler.sendEmptyMessageDelayed(0,1000);  //定个时 3秒
     }
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {

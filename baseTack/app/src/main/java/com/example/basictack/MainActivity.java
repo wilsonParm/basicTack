@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.basictack.usualFun.ScreenInfoUtils;
 import com.example.basictack.usualFun.setStatusBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ScreenInfoUtils.fullScreen(this);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         drawer.setDrawerListener(toggle);//初始化状态
         toggle.syncState();
 
-        setStatusBar.setColor(MainActivity.this);
+//        setStatusBar.setColor(MainActivity.this);
 
         /*---------------------------添加头布局和尾布局-----------------------------*/
         //获取xml头布局view

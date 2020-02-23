@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <!-- ignore可以去掉这一大堆的波浪线 -->
 
         <activity android:name=".welcome_act"
         android:theme="@style/AppTheme.WelcomeViewStyle">
@@ -19,14 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- ignore可以去掉这一大堆的波浪线 -->
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>
