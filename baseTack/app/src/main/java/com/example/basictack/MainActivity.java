@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        initSidebar();
+
+    }
+
+    private void initSidebar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         NavigationView navigationview = (NavigationView) findViewById(R.id.navigation_view);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
         //去掉默认颜色显示原来颜色  设置为null显示本来图片的颜色
         navigationview.setItemIconTintList(csl);
 
-        //设置消息数量
-        LinearLayout llAndroid = (LinearLayout) navigationview.getMenu().findItem(R.id.single_1).getActionView();
-        TextView msg = (TextView) llAndroid.findViewById(R.id.msg_bg);
-        msg.setText("99+");
-
         //设置条目点击监听
         navigationview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,12 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        /*---------------------------自定义侧边栏布局-----------------------------*/
-//        getSupportFragmentManager().beginTransaction().replace(R.id.navigation_view,
-//                new NavigationViewFragment()).commit();
-
-
     }
 
 }
