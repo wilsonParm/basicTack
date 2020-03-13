@@ -29,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
         initSidebar();
 
+
     }
 
+    /**
+     * 初始化侧边栏
+     */
     private void initSidebar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         NavigationView navigationview = (NavigationView) findViewById(R.id.navigation_view);
