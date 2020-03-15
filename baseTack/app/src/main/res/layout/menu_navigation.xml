@@ -15,12 +15,10 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/single_3"
-            android:icon="@drawable/ic_github_line"
             android:title="github"/>
 
         <item
             android:id="@+id/single_4"
-            android:icon="@drawable/ic_wechat_fill"
             android:title="wechat"/>
     </group>
 
@@ -29,17 +27,14 @@
         <menu>
             <item
                 android:id="@+id/item_2"
-                android:icon="@drawable/ic_taobao_fill"
                 android:title="淘宝"/>
 
             <item
                 android:id="@+id/item_1"
-                android:icon="@drawable/ic_baidu_line"
                 android:title="百度"/>
 
             <item
                 android:id="@+id/item_3"
-                android:icon="@drawable/ic_qq_fill"
                 android:title="腾讯"/>
         </menu>
     </item>
