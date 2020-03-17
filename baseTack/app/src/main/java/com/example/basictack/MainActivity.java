@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.example.basictack.usualFun.ScreenInfoUtils;
 import com.example.basictack.usualFun.setStatusBar;
 
 public class MainActivity extends AppCompatActivity {
+    private ImageButton mAddTaskBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,15 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        initSidebar();
+        this.initSidebar();
+
+        mAddTaskBtn = this.<ImageButton>findViewById(R.id.add_task_btn);
+        mAddTaskBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Build a new Task",Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
