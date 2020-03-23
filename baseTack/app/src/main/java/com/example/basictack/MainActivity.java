@@ -9,10 +9,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,8 @@ import com.example.basictack.usualFun.setStatusBar;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton mAddTaskBtn;
+    private EditText mET_input_task;
+    private ListView mTaskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,32 @@ public class MainActivity extends AppCompatActivity {
 
         this.initSidebar();
 
-        mAddTaskBtn = this.<ImageButton>findViewById(R.id.add_task_btn);
+
+        mET_input_task = this.<EditText>findViewById(R.id.ET_input_task);
+        mAddTaskBtn = this.<ImageButton>findViewById(R.id.Add_task_btn);
+        mTaskList = this.<ListView>findViewById(R.id.Task_list);
+
+        mET_input_task.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    Toast.makeText(MainActivity.this,"has Focus",Toast.LENGTH_SHORT).show();
+                    mAddTaskBtn.setVisibility(View.VISIBLE);
+                }else{
+                    Toast.makeText(MainActivity.this,"has no Focus",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        mTaskList.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mAddTaskBtn.clearFocus();
+                mAddTaskBtn.setFocusableInTouchMode(false);
+                mAddTaskBtn.setVisibility(View.GONE);
+                return false;
+            }
+        });
+
         mAddTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
