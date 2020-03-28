@@ -1,5 +1,6 @@
 package com.example.basictack;
 
+import android.app.Dialog;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,70 +9,69 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.basictack.usualFun.DensityUtil;
 import com.example.basictack.usualFun.ScreenInfoUtils;
-import com.example.basictack.usualFun.setStatusBar;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton mAddTaskBtn;
-    private EditText mET_input_task;
-    private ListView mTaskList;
+    private EditText mNewTask_ET;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ScreenInfoUtils.fullScreen(this);
-
         setContentView(R.layout.activity_main);
-
         this.initSidebar();
 
-
-        mET_input_task = this.<EditText>findViewById(R.id.ET_input_task);
         mAddTaskBtn = this.<ImageButton>findViewById(R.id.Add_task_btn);
-        mTaskList = this.<ListView>findViewById(R.id.Task_list);
-
-        mET_input_task.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    Toast.makeText(MainActivity.this,"has Focus",Toast.LENGTH_SHORT).show();
-                    mAddTaskBtn.setVisibility(View.VISIBLE);
-                }else{
-                    Toast.makeText(MainActivity.this,"has no Focus",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        mTaskList.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                mAddTaskBtn.clearFocus();
-                mAddTaskBtn.setFocusableInTouchMode(false);
-                mAddTaskBtn.setVisibility(View.GONE);
-                return false;
-            }
-        });
-
         mAddTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Build a new Task",Toast.LENGTH_SHORT).show();
+                show_dask_input_windows();
             }
         });
 
 
     }
 
+    private void show_dask_input_windows() {
+        Dialog bottomDialog = new Dialog(this, R.style.BottomDialog);
+        View contentView = LayoutInflater.from(this).inflate(R.layout.input_new_task_dialog, null);
+        bottomDialog.setContentView(contentView);
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) contentView.getLayoutParams();
+        params.width = getResources().getDisplayMetrics().widthPixels - DensityUtil.dp2px(this, 26f);
+        params.bottomMargin = DensityUtil.dp2px(this, 18f);
+        contentView.setLayoutParams(params);
+        bottomDialog.getWindow().setGravity(Gravity.BOTTOM);//dialog底部弹出
+        bottomDialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
+
+        bottomDialog.show();
+
+        //↓弹出dialog后自动弹出软键盘并聚焦到editView
+
+        //**这里不能用this而是用了bottom，用this的话下面的mNewTask_ET.requestFocus();会显示mNewTask_ET是空指针
+        mNewTask_ET = bottomDialog.findViewById(R.id.new_task_ET);
+        mNewTask_ET.requestFocus();
+        bottomDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mNewTask_ET, 0);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
     /**
      * 初始化侧边栏
      */
