@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,9 +29,11 @@ import com.example.basictack.usualFun.DensityUtil;
 import com.example.basictack.usualFun.ScreenInfoUtils;
 
 public class MainActivity extends AppCompatActivity {
+
     private ImageButton mAddTaskBtn;
     private EditText mNewTask_ET;
     private Dialog mBottomDialog;
+    private TaskListAct mTaskListAct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         ScreenInfoUtils.fullScreen(this);
         setContentView(R.layout.activity_main);
         this.initSidebar();
+
+        mTaskListAct = new TaskListAct("my task list");
+        getSupportFragmentManager().beginTransaction().add(R.id.Task_list_frameLayout, mTaskListAct, "a").commitAllowingStateLoss();
 
         mAddTaskBtn = this.<ImageButton>findViewById(R.id.Add_task_btn);
         mAddTaskBtn.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     /**
      * 处理点击了“+”btn之后的事件：弹出dialog，弹出输入法，获取EditView内容，处理内容
