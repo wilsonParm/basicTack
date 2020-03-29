@@ -2,12 +2,15 @@ package com.example.basictack;
 
 import android.app.Dialog;
 import android.content.res.ColorStateList;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -19,7 +22,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mAddTaskBtn;
     private EditText mNewTask_ET;
     private Dialog mBottomDialog;
-    private TaskListAct mTaskListAct;
+    private RecyclerView mRVTaskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.initSidebar();
 
-        mTaskListAct = new TaskListAct("my task list");
-        getSupportFragmentManager().beginTransaction().add(R.id.Task_list_frameLayout, mTaskListAct, "a").commitAllowingStateLoss();
+        setTaskRecyclerView();
 
         mAddTaskBtn = this.<ImageButton>findViewById(R.id.Add_task_btn);
         mAddTaskBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +86,24 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    private void setTaskRecyclerView(){
+        mRVTaskList = this.findViewById(R.id.rv_task_list);
+        mRVTaskList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        mRVTaskList.addItemDecoration(new MyDecoration());
+        mRVTaskList.setAdapter(new TaskListAdapt(
+            MainActivity.this
+        ));
+    }
+    /**
+     * 目前用来设置分割线
+     */
+    class  MyDecoration extends  RecyclerView.ItemDecoration{
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            outRect.set(0,0,0,1);
+        }
     }
     /**
      * find 一个dialog并且弹出,设置好dialog的宽度和圆角

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<!-- 卧槽上面的layout_height改成wrap_content就可以显示多行了，害我看了那么久，
+虽然不知道为什么，但又好像很有道理的样子，算了，无所谓吧，以后注意 -->
+
+    <TextView
+        android:id="@+id/tv_task_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:background="@color/white"/>
+</LinearLayout>
